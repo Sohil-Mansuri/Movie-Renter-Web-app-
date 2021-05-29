@@ -1,0 +1,29 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<h2>@Model.Rows[0][1].ToString()</h2>
+
+
+
+<hr />
+
+<dl class="dl-horizontal">
+    <dt>
+        Membership Type:
+    </dt>
+
+    <dd>
+        @Model.Rows[0][4].ToString()
+    </dd>
+    <dt>
+        Data Of Birth:
+    </dt>
+
+    <dd>
+        @Model.Rows[0][2]
+    </dd>
+
+</dl>

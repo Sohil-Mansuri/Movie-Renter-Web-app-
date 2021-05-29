@@ -1,0 +1,67 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>List of Customers</h2>
+
+
+
+<hr />
+
+
+
+<table id="Mytable" class="table table-bordered table-striped table-hover">
+
+    <thead>
+        <tr>
+            <th>Customers</th>
+            <th>Memebership Type</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @for (int i = 0; i < Model.Rows.Count; i++)
+        {
+            <tr>
+                <td>@Model.Rows[i][1].ToString()</td>
+                <td>@Model.Rows[i][4].ToString()</td>
+                <td><a href="@Url.Action("Edit","Customer",new {id=Model.Rows[i][0] })" onclick="fun1()" class="btn btn-info" >Edit</a></td>
+
+                <td><a href="@Url.Action("Delete","Customer", new { id = Model.Rows[i][0] })" class="btn btn-danger">Delete</a></td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+
+<script>
+    function fun1() {
+        alert("You Can Change Only Your Name");
+
+    }
+
+    })
+</script>
+
+@section scripts {
+    
+    <script>
+
+
+        $(document).ready(function(){
+
+            $("#Mytable").DataTable();
+
+           
+
+
+        })
+        
+    </script>
+    
+    }

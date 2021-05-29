@@ -1,0 +1,178 @@
+﻿@model MovieRenderApp.Models.NewRenter
+@{
+    ViewBag.Title = "New Renter";
+}
+
+
+<br />
+<hr />
+
+
+
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm())
+        {
+            <h3 class="text-center"> Addd New Movie Renter Here </h3>
+            <br />
+            <br />
+
+            <div class="row">
+
+                <div class="col-md-3">@Html.LabelFor(m => m.Customer)</div>
+                <div class="col-md-6">
+                    @Html.EditorFor(m => m.Customer, new
+               {
+                   htmlAttributes = new { @class = "form-control" } 
+                             })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 col-md-offset-3">
+                @Html.ValidationMessageFor(x => x.Customer, "", htmlAttributes: new { @class="text-danger"})
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="row">
+
+            <div class="col-md-3">@Html.LabelFor(m => m.Movie)</div>
+            <div class="col-md-6">
+                @Html.EditorFor(m => m.Movie, new
+                             {
+                                 htmlAttributes = new { @class = "form-control" }
+                             })
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            @Html.ValidationMessageFor(x => x.Movie, "", htmlAttributes: new { @class = "text-danger" })
+        </div>
+    </div>
+
+        <br />
+        <br />
+
+        <div class="row" style="margin-left:80px;">
+            <div class="col-md-4 col-md-offset-5"><input id="submit" type="submit" class="btn btn-info btn-block" value="Final Submit" />
+               
+
+        </div>
+            </div>
+
+            @Html.HiddenFor(m=>m.Id)
+
+
+        }
+
+
+
+   
+   
+
+    </div>
+
+</div>
+
+<button id="add" class="btn btn-info">Add Movies</button>
+
+
+
+
+<div class="row">
+    <div class="col-md-3">
+        <br />
+
+        <ul id="list" class="list-group">
+       
+
+
+        </ul>
+
+    </div>
+    
+
+</div>
+
+@section scripts{
+
+
+    
+    <script>
+
+
+        $(document).ready(function () {
+           
+
+
+            $("#Customer").autocomplete({
+
+                source: '@Url.Action("GetCustomerByName")'
+
+
+                
+            })
+          
+
+            $("#Movie").autocomplete({
+
+                source: '@Url.Action("GetMovieByName")'
+
+
+            })
+
+
+            var count = 0;
+
+            $("#add").click(function () {
+
+                
+               
+                var data = $("#Movie").val();
+
+                  if (count >= 3) {
+                    alert("Maximim 3 Movies You can rent");
+                }
+               else if (data == "") {
+                    alert("Please select Move First ");
+                    $("#Movie").css("border", "1px solid red");
+                }
+               else {
+                   count++;
+                   $("#Movie").css("border", "1px solid #cccccc");
+                   $("#list").append("<li class='list-group-item'>" + data + "</li>")
+                   $("#Movie").val("");
+
+                    
+               }
+                
+                              
+
+                
+            })
+
+
+            
+ 
+
+        })
+
+
+
+       
+
+
+
+
+
+
+
+
+    </script>
+    
+
+
+
+    
+    }

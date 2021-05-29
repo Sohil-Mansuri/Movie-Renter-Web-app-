@@ -1,0 +1,78 @@
+﻿@model MovieRenderApp.Models.Movie
+@{
+    ViewBag.Title = "AddMovie";
+}
+
+<h3>Add New Movie Here</h3>
+<br />
+<br />
+<hr />
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        
+        <div class="row">
+            <div class="col-md-1"> @Html.LabelFor(m => m.Name)</div>
+            <div class="col-md-3">@Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control" } })</div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-md-offset-1">
+                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-1"> @Html.LabelFor(m => m.ReleaseData)</div>
+            <div class="col-md-3">@Html.EditorFor(m => m.ReleaseData, new { htmlAttributes = new { @class = "form-control" } })</div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-md-offset-1">
+                @Html.ValidationMessageFor(m => m.ReleaseData, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <br />
+        
+        <div class="row">
+            <div class="col-md-1"> @Html.LabelFor(m => m.Category)</div>
+            <div class="col-md-3">@Html.DropDownListFor(m => m.Category, new SelectList(ViewBag.List),"Select Category",htmlAttributes:new { @class = "form-control" } )</div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-md-offset-1">
+                @Html.ValidationMessageFor(m => m.Category, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <br />
+        <div class="row">
+            <div class="col-md-1"> @Html.LabelFor(m => m.Stocks)</div>
+            <div class="col-md-3">@Html.EditorFor(m => m.Stocks, new { htmlAttributes = new { @class = "form-control" } })</div>
+            </div>
+        <div class="row">
+            <div class="col-md-3 col-md-offset-1">
+                @Html.ValidationMessageFor(m => m.Stocks, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <br />
+
+        @Html.HiddenFor(m=>m.Id)
+            <div class="row">
+                <div class="col-md-2 col-md-offset-1">
+                    <input type="submit" value="Save" class="btn btn-success" />
+                </div>
+            </div>
+
+        </div>
+        @Html.AntiForgeryToken();
+
+}
+
+    
+   
+   
+  
+    
+     

@@ -1,0 +1,18 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Rows[0][1].ToString()</h2>
+
+
+<ul>
+    
+   <li>Category : @Model.Rows[0][5]</li>
+    <li>Release Data : @Model.Rows[0][2]</li>
+    <li>Data Added : @Model.Rows[0][3]</li>
+    <li>Number In Stock : @Model.Rows[0][4]</li>
+        
+    
+</ul>
+
